@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leg.ovh</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="icon" href="/static/img/favicon.ico">
+    <script type="module" src="/static/js/index.js"></script>
+    <script type="module" src="/static/js/datastar.js"></script>
+</head>
+<body>
+    <header class="gc gt xl">
+        <span>W</span>
+        <span>O</span>
+        <span>R</span>
+        <span>D</span>
+        <span>*</span>
+        <span>L</span>
+        <span>E</span>
+    </header>
+    <main id="main" class="gc gt l">
+        <p>Choose your difficulty</p>
+        <div 
+        class="gc difficulty-button"
+        data-on-click="@post('/difficulty/easy')">
+            <span>Easy</span>
+            <p>5 letters - 7 tries</p>
+        </div>
+
+        <div 
+        class="gc difficulty-button"
+        data-on-click="@post('/difficulty/medium')">
+            <span>Medium</span>
+            <p>5 letters - 6 tries</p>
+        </div>
+    
+        <div 
+        class="gc difficulty-button"
+        data-on-click="@post('/difficulty/hard')">
+            <span>Hard</span>
+            <p>6 letters - 5 tries</p>
+        </div>
+
+        <div 
+        class="gc difficulty-button"
+        data-on-click="@post('/difficulty/hackerman')">
+            <span>Hackerman</span>
+            <p>9 letters - 1 try</p>
+        </div>
+    </main>
+    <footer class="gc gt xs">
+        <p>Made with love by a cat</p>
+    </footer>
+</body>
+</html>

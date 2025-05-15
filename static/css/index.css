@@ -1,0 +1,106 @@
+@import url("https://unpkg.com/open-props/normalize.min.css") layer(normalize);
+@import url('gold.css') layer(gold);
+
+:root {
+    --m: 1.4rem;
+}
+
+body {
+    height: 100svh;
+    display: grid;
+    grid-template-rows: 6rem 1fr auto;
+    background-color: beige;
+}
+
+header {
+    grid-template-columns: repeat(7, 1fr);
+    filter: drop-shadow(0px 0px 4px salmon);
+    font-weight: bold;
+}
+
+footer {
+    place-items: end;
+}
+
+footer p {
+    border-top: 1px solid salmon;
+    border-radius: 4rem;
+    margin-top: 1ch;
+}
+
+main {
+    gap: var(--m);
+    filter: drop-shadow(0px 0px 1px salmon);
+}
+
+.difficulty-button {
+    cursor: pointer;
+    font-family: monospace;
+    padding: var(--s);
+    border: 2px solid rgba(220, 20, 60, 0.509);
+    border-radius: var(--m);
+    font-size: var(--m);
+    transition: background .1s linear;
+    p {
+        font-size: var(--s);
+        font-style: italic;
+    }
+    &:hover {
+        color: antiquewhite;
+        background: salmon;
+    }
+}
+
+.wordle-wrapper {
+    padding: var(--m);
+    z-index: -1;
+}
+
+img {
+    width: var(--xl);
+    place-self: center;
+}
+
+.line, wordle-line {
+    font-family: 'Times New Roman', Times, serif;
+    display: grid;
+    gap: 1rem;
+}
+
+wordle-line {
+    filter: drop-shadow(0px 0px 6px lightblue);
+}
+
+.square {
+    display: grid;
+    place-content: center;
+    width: 3rem;
+    aspect-ratio: 1/1;
+    background: antiquewhite;
+    font-size: var(--m);
+    font-weight: bold;
+    transition: all .2s linear;
+    transition-delay: attr(data-delay type(<time>), 0s);
+}
+
+.square[completed] {
+    color: antiquewhite;
+    font-weight: 400;
+}
+
+.overlay {
+    place-self: center;
+    opacity: 0;
+    gap: var(--m);
+    background-color: bisque;
+    padding: var(--l);
+    border: 2px solid rgba(222, 184, 135, 0.817);
+    border-radius: var(--xl);
+    animation: pop 1s linear 1s forwards;
+}
+
+@keyframes pop {
+    to {
+        opacity: 1;
+    }
+}
