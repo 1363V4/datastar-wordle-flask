@@ -6,9 +6,10 @@ from flask_limiter.util import get_remote_address
 from utils.logger import logger
 from random import choice
 from datastar_py.sse import ServerSentEventGenerator as SSE
-from tinydb import TinyDB
+from tinydb import TinyDB, table
 from words import words
 import re
+import time
 
 
 load_dotenv()
@@ -146,7 +147,8 @@ def difficulty(difficulty):
         'attempts': [],
         'status': "running"
     }
-    db_id = games.insert(data)
+    db_id = int(time.time() * 1000)
+    games.insert(table.Document(data, doc_id=db_id))
     session['db_id'] = db_id
     html = view_function(data)
     return SSE.merge_fragments(fragments=[html], use_view_transition=True)
