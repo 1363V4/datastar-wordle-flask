@@ -170,7 +170,7 @@ def attempt(details):
         data = games.get(doc_id=db_id)
         html = view_function(data)
         return SSE.merge_fragments(fragments=[html])
-    return "", 200
+    return "", 204
 
 @app.get('/new_game')
 def new_game():
