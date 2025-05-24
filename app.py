@@ -1,15 +1,16 @@
 import os
+import mimetypes
+import re
+import time
+from random import choice
 from dotenv import load_dotenv
 from flask import Flask, render_template, session, redirect, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from utils.logger import logger
-from random import choice
 from datastar_py.sse import ServerSentEventGenerator as SSE
 from tinydb import TinyDB, table
 from words import words
-import re
-import time
 
 
 load_dotenv()
@@ -17,6 +18,8 @@ load_dotenv()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 
+# Configure MIME types for JavaScript
+mimetypes.add_type('application/javascript', '.js')
 
 limiter = Limiter(
     get_remote_address,
@@ -139,7 +142,10 @@ def difficulty(difficulty):
             no_tries = 1
             no_letters = 9
         case _:
-            pass
+            # Default to easy difficulty
+            word = choice(words[5])
+            no_tries = 7
+            no_letters = 5
     data = {
         'word': word,
         'no_tries': no_tries,
@@ -157,6 +163,8 @@ def difficulty(difficulty):
 def attempt(details):
     db_id = session['db_id']
     data = games.get(doc_id=db_id)
+    if data is None:
+        return "", 404
     if re.match(r'^[A-Z]+$', details) and len(details) == data['no_letters']:
         word = data['word']
         colors = get_colors(word, details)
