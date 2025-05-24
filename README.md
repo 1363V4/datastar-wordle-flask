@@ -182,7 +182,7 @@ def view_function(data):
              completed
              data-delay="{delay}s"
              style="background: {bg_color}">
-            {letter}
+             {letter}
         </div>'''
         delay += 2 / no_tries  # Progressive delay based on difficulty
 ```
@@ -284,7 +284,7 @@ html += f'<div class="square" style="background: {bg_color}">{letter}</div>'
 
 ### 8. Multi-Threaded Database Safety
 
-**TinyDB Conflict Prevention**
+**TinyDB ID Hack**
 
 ```python
 # Problem: TinyDB uses auto-incrementing IDs that conflict with multiple workers
@@ -293,7 +293,7 @@ db_id = int(time.time() * 1000)
 games.insert(table.Document(data, doc_id=db_id))
 ```
 
-**Production-Ready Pattern**: This simple trick enables TinyDB usage in multi-threaded production environments without document ID conflicts.
+This simple trick enables TinyDB usage in multi-threaded production environments without document ID conflicts.
 
 ## Key Datastar Patterns Demonstrated
 
