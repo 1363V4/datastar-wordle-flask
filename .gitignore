@@ -11,3 +11,4 @@ legovh.sock
 # Logs
 log/
 *.log
+data.json
